@@ -95,6 +95,3 @@ $('button').click(function(event) {
     }
 });
 
-//console.log('asdfasdf',$('.box'))
-
-http://jsfiddle.net/15chrjef/v22tx1qj/
