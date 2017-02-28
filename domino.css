@@ -1,0 +1,31 @@
+#block1, #block2{
+  width: 200px;
+  height: 200px;
+  background-color: black;
+}
+
+.underline {
+  border-bottom: 1px solid white;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.block {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.black {
+  background-color:black
+}
