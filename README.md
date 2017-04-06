@@ -6,4 +6,5 @@ domino: https://jsfiddle.net/15chrjef/y5kx30sw/
 buttonCreator: https://jsfiddle.net/ye6wwaza/
 filterTable: https://jsfiddle.net/ovgrkgke/7/
 sendBtnDown: https://jsfiddle.net/rt7q28o3/
+reactLifeCycle: https://jsfiddle.net/ywyjaeut/
 ```
