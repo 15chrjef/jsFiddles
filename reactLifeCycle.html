@@ -1,0 +1,85 @@
+<body>
+  
+  <div id="container">
+      <!-- This element's contents will be replaced with your component. -->
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  
+  <script type="text/jsx" >
+  	const MinuteCounter = React.createClass({
+    	componentWillMount(){
+      	var minutes = Math.floor( this.props.seconds / 60)
+        var seconds = this.props.seconds % 60;
+        this.setState({ minutes, seconds })
+      },
+      componentWillReceiveProps(nextProps){
+      	var minutes = Math.floor( nextProps.seconds / 60)
+        var seconds = nextProps.seconds % 60
+        this.setState({ minutes, seconds })
+      },
+      shouldComponentUpdate(nextProps, nextState){
+      	return nextProps.seconds % 5 === 0;
+      },
+      componentWillUpdate(nextProps, nextState){
+      	if(nextState.seconds === 0){
+        	this.props.onNewMinute(nextState.minutes)
+        }
+      },
+    	render(){
+      	return <h1> {this.state.minutes} min. {this.state.seconds} sec.</h1>
+      }
+    })
+		const Timer = React.createClass({
+    	getInitialState() {
+      	return { seconds: 0 }
+      },
+    	componentDidMount(){
+      	this.intervalId = setInterval(() => {
+        	this.setState({ seconds: this.state.seconds + 1 })
+        }, 100)
+      },
+      componentWillUnmount(){
+      	clearInterval(this.intervalId)
+      },
+    	render(){
+      	return (
+          <MinuteCounter 
+          seconds={this.state.seconds}
+          onNewMinute={(min) => console.log(min)}
+          />
+        )
+      }
+    })
+		
+    var Toggle = React.createClass({
+    	getInitialState(){
+      	return { on: false }
+      },
+      toggle(){
+      this.setState({ on: !this.state.on })
+      },
+      render(){
+      	return (
+        	<div>
+          	<button onClick={this.toggle}>
+            	Toggle
+            </button>
+            {this.state.on ? <Timer/> : 'Off'}
+          </div>
+        )
+      }
+    })
+    ReactDOM.render(
+    	<div>
+      	<Timer />
+        <Toggle/>
+      </div>,
+      document.getElementById('container')
+    );
+    
+  </script>
+
+</body>
